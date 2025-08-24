@@ -9,7 +9,8 @@ class DashboardController extends Controller
 {
     public function dashboard(Request $request)
     {
-        $users = User::all();
+       $users = User::paginate(10); // 10 users per page
+
         return view('dashboard', compact('users'));
     }
 
