@@ -15,12 +15,11 @@
         // Initialize DataTable
         var table = $('#datatable');
 
-        // Open Edit Modal and Load Data
+       
         $(document).on('click', '.editUser', function () {
             
         });
 
-        // Update User via AJAX
         
     });
 </script>
