@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
-    <h1>Dashboard</h1>
-    <p>Welcome Home</p>
-    <p>User List</p>
+
 
     <!-- Success/Error Messages -->
     @if(session('success'))
