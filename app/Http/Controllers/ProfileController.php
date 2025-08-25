@@ -24,7 +24,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = Auth::user();
+        $user = \App\Models\User::find(Auth::id());
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -36,7 +36,8 @@ class ProfileController extends Controller
             ],
         ]);
 
-        $user->update($validated);
+        $user->fill($validated);
+        $user->save();
 
         return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
     }
@@ -46,11 +47,13 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request)
     {
-        $user = Auth::user();
+        $user = \App\Models\User::find(Auth::id());
 
         Auth::logout();
 
-        $user->delete();
+        if ($user) {
+            $user->delete();
+        }
 
         return redirect('/')->with('success', 'Your account has been deleted.');
     }
